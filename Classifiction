@@ -1,0 +1,55 @@
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Chargement du fichier CSV
+file_path = r"C:\Users\Steve\Downloads\df_imdb.csv"
+df = pd.read_csv(file_path, encoding="utf-8")
+
+# Nettoyer les noms des colonnes pour éviter les erreurs de casse ou espaces
+df.columns = df.columns.str.strip().str.lower()
+
+# Vérifier les colonnes disponibles
+print("Colonnes du dataset :", df.columns)
+
+# Définir les caractéristiques et la cible
+features = ['duration', 'averagerating']  # Supprimé 'genre1_film' car il est textuel
+df['high_score'] = (df['averagerating'] > 7).astype(int)  # 1 si le score > 7, sinon 0
+
+# Vérifier les valeurs manquantes
+print("Valeurs manquantes avant nettoyage :\n", df[features].isnull().sum())
+
+# Remplir les valeurs manquantes par la moyenne
+df[features] = df[features].fillna(df[features].mean())
+
+# **Encodage des colonnes de genres sous forme binaire**
+df = pd.get_dummies(df, columns=['genre1_film'], prefix="genre")
+
+# Filtrer uniquement les colonnes numériques et booléennes pour éviter les erreurs avec StandardScaler
+X = df.select_dtypes(include=['number', 'bool'])
+
+# Vérifier les colonnes sélectionnées
+print("Colonnes utilisées pour le modèle :", X.columns)
+
+# Séparation des données
+y = df['high_score']
+
+# Normalisation uniquement des colonnes numériques
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Séparation des données
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+
+# Entraînement du modèle
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Prédiction et évaluation
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Précision du modèle : {accuracy:.2f}")
