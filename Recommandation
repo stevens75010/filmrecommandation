@@ -1,0 +1,40 @@
+from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
+
+# Chargement du fichier CSV
+file_path = r"C:\Users\Steve\Downloads\df_imdb.csv"
+df = pd.read_csv(file_path, encoding="utf-8")
+
+# Nettoyer les colonnes
+df.columns = df.columns.str.strip().str.lower()
+
+# Sélectionner les caractéristiques pour la similarité
+features = ['duration', 'numvotes']  # Vérifie que ces colonnes existent
+
+# Encodage des genres
+df_encoded = pd.get_dummies(df, columns=['genre1_film'])
+
+# Nettoyage des données
+df_encoded = df_encoded.dropna(subset=features)
+
+# Filtrer uniquement les colonnes numériques et booléennes
+X = df_encoded.select_dtypes(include=['number', 'bool'])
+
+# Vérifier les colonnes utilisées pour la similarité
+print("Colonnes utilisées pour la similarité :", X.columns)
+
+# Calcul de la similarité cosinus
+similarity_matrix = cosine_similarity(X)
+
+# Fonction de recommandation
+def recommender(movie_name, df, similarity_matrix):
+    if movie_name not in df['title'].values:
+        return "Film non trouvé"
+
+    idx = df[df['title'] == movie_name].index[0]
+    similar_indices = similarity_matrix[idx].argsort()[::-1][1:6]  # Top 5 films similaires
+    
+    return df.iloc[similar_indices]['title']
+
+# Exemple : recommander des films similaires à "Inception"
+print(recommender("Inception", df, similarity_matrix))
