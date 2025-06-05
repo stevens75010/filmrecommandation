@@ -1,0 +1,20 @@
+import pandas as pd
+
+# Chargement du fichier
+file_path = r"C:\Users\Steve\Downloads\df_imdb.csv"
+df = pd.read_csv(file_path, encoding="utf-8")
+
+# Nombre de films par genre
+print("Répartition des films par genre :\n", df['genre1_film'].value_counts())
+
+# Nombre de films par langue
+print("Répartition des films par langue :\n", df['language'].value_counts())
+
+# Nombre de films par pays
+print("Répartition des films par pays :\n", df['region'].value_counts())
+
+# Nombre de films par réalisateur
+print("Nombre de films par réalisateur :\n", df['name_dir'].value_counts())
+
+# Nombre de films par acteur principal
+print("Nombre de films par acteur principal :\n", df['name_act1'].value_counts())
