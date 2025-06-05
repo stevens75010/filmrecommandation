@@ -1,0 +1,9 @@
+import pandas as pd
+
+# Chargement du fichier
+file_path = r"C:\Users\Steve\Downloads\df_imdb.csv"
+df = pd.read_csv(file_path, encoding="utf-8")
+
+print(df.loc[df['averageRating'].idxmax(), ['title', 'genre1_film', 'averageRating']])
+
+print(df.loc[df['averageRating'].idxmax(), ['title', 'year', 'averageRating']])
