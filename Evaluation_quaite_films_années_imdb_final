@@ -1,0 +1,15 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+# Chargement du fichier CSV
+file_path = r"C:\Users\Steve\Downloads\df_imdb.csv"
+df = pd.read_csv(file_path, encoding="utf-8")
+
+plt.figure(figsize=(10,5))
+sns.lineplot(x=df['year'], y=df['averageRating'])
+plt.xlabel("Année de sortie")
+plt.ylabel("Note IMDb moyenne")
+plt.title("Évolution des notes IMDb dans le temps")
+plt.show()
