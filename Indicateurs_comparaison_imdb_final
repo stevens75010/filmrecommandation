@@ -1,0 +1,16 @@
+import pandas as pd
+
+# Chargement du fichier
+file_path = r"C:\Users\Steve\Downloads\df_imdb.csv"
+df = pd.read_csv(file_path, encoding="utf-8")
+
+# Corrélation entre la durée et la note IMDb
+print("Corrélation durée vs. score IMDb :\n", df[['duration', 'averageRating']].corr())
+
+# Film le plus long
+film_le_plus_long = df.loc[df['duration'].idxmax(), ['title', 'duration']]
+print("Film le plus long :\n", film_le_plus_long)
+
+# Film le mieux noté
+film_le_mieux_note = df.loc[df['averageRating'].idxmax(), ['title', 'averageRating']]
+print("Film le mieux noté :\n", film_le_mieux_note)
