@@ -1,0 +1,28 @@
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+import pandas as pd
+
+# Chargement du fichier CSV
+file_path = r"C:\Users\Steve\Downloads\df_imdb.csv"
+df = pd.read_csv(file_path, encoding="utf-8")
+
+# Nettoyer les colonnes
+df.columns = df.columns.str.strip().str.lower()
+
+# Définir les caractéristiques
+features = ['duration', 'numvotes']
+
+# Nettoyage des données
+df = df.dropna(subset=features)
+X = df[features]
+
+# Normalisation des caractéristiques
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Définition du modèle K-Means avec 3 clusters
+kmeans = KMeans(n_clusters=3, random_state=42)
+df['cluster'] = kmeans.fit_predict(X_scaled)
+
+# Affichage des 10 premiers films avec leur cluster
+print(df[['title', 'cluster']].head(10))
