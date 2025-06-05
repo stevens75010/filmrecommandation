@@ -1,0 +1,11 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+# Chargement du fichier CSV
+file_path = r"C:\Users\Steve\Downloads\df_imdb.csv"
+df = pd.read_csv(file_path, encoding="utf-8")
+
+genre_scores = df.groupby('genre1_film')['averageRating'].mean().sort_values(ascending=False)
+print("Note moyenne par genre :\n", genre_scores)
