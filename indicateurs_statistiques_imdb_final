@@ -1,0 +1,35 @@
+import pandas as pd
+
+# Chargement du fichier
+file_path = r"C:\Users\Steve\Downloads\df_imdb.csv"
+df = pd.read_csv(file_path, encoding="utf-8")
+
+# Nombre total de films
+print("Nombre total de films :", df.shape[0])
+
+# Nombre de colonnes
+print("Nombre de colonnes :", df.shape[1])
+
+# Nombre de valeurs manquantes
+print("Valeurs manquantes par colonne :\n", df.isnull().sum())
+
+# Durée moyenne des films
+print("Durée moyenne des films :", df['duration'].mean())
+
+# Médiane de la durée des films
+print("Médiane de la durée des films :", df['duration'].median())
+
+# Variance et écart-type de la durée
+print("Variance de la durée :", df['duration'].var())
+print("Écart-type de la durée :", df['duration'].std())
+
+# Score IMDb moyen
+print("Score IMDb moyen :", df['averageRating'].mean())
+
+# Nombre moyen de votes IMDb
+print("Nombre moyen de votes IMDb :", df['numVotes'].mean())
+
+# Répartition des notes IMDb
+print("Répartition des notes IMDb :\n", df['averageRating'].value_counts())
+
+print(df.loc[df['averageRating'].idxmax(), ['title', 'genre1_film', 'averageRating']])
