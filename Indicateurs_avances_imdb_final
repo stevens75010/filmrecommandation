@@ -1,0 +1,19 @@
+import pandas as pd
+
+# Chargement du fichier
+file_path = r"C:\Users\Steve\Downloads\df_imdb.csv"
+df = pd.read_csv(file_path, encoding="utf-8")
+
+# Classement des films les plus populaires (votes élevés et bonne note)
+films_populaires = df.sort_values(by=['numVotes', 'averageRating'], ascending=[False, False]).head(10)
+print("Top 10 films populaires :\n", films_populaires[['title', 'numVotes', 'averageRating']])
+
+# Affichage des genres les plus fréquents avec un graphique
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10,5))
+sns.barplot(x=df['genre1_film'].value_counts().index, y=df['genre1_film'].value_counts().values)
+plt.xticks(rotation=90)
+plt.title("Répartition des genres de films")
+plt.show()
