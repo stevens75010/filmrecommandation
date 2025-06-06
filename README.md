@@ -1,4 +1,4 @@
-# 🎬 Ma Plateforme VOD - Style Netflix
+# 🎬 Ma Plateforme VOD - Style Zyeddd
 
 Bienvenue sur mon projet Streamlit de plateforme VOD !  
 L'objectif est de créer une interface inspirée de Netflix pour explorer, visualiser et recommander des films.
