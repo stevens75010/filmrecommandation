@@ -2,10 +2,40 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-
 # Chargement du fichier CSV
 file_path = r"C:\Users\Steve\Downloads\df_imdb.csv"
 df = pd.read_csv(file_path, encoding="utf-8")
 
-top_directors = df.groupby('name_dir')['numVotes'].sum().sort_values(ascending=False).head(10)
-print("Top 10 réalisateurs les plus populaires :\n", top_directors)
+# Top 10 réalisateurs par nombre total de votes
+top_directors_votes = (
+    df.groupby('name_dir')['numVotes']
+      .sum()
+      .sort_values(ascending=False)
+      .head(10)
+)
+print("Top 10 réalisateurs par nombre total de votes :\n", top_directors_votes)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x=top_directors_votes.values, y=top_directors_votes.index, palette="viridis")
+plt.title("Top 10 réalisateurs par nombre total de votes")
+plt.xlabel("Nombre total de votes")
+plt.ylabel("Réalisateurs")
+plt.tight_layout()
+plt.show()
+
+# Top 10 réalisateurs par nombre de films
+top_directors_movies = (
+    df.groupby('name_dir')
+      .size()
+      .sort_values(ascending=False)
+      .head(10)
+)
+print("Top 10 réalisateurs par nombre de films :\n", top_directors_movies)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x=top_directors_movies.values, y=top_directors_movies.index, palette="magma")
+plt.title("Top 10 réalisateurs par nombre de films")
+plt.xlabel("Nombre de films")
+plt.ylabel("Réalisateurs")
+plt.tight_layout()
+plt.show()
