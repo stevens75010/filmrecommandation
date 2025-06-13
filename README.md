@@ -66,6 +66,9 @@ filmrecommandation/
 ├── 📁 ressources/                # Docs externes, cahier des charges, notes
 │   └── presentation_projet.md
 │
+├── 📁tests/
+│   └── test_utils.py
+│
 ├── requirements.txt              # Dépendances Python
 ├── README.md                     # Présentation du projet
 ```
