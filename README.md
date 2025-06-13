@@ -46,7 +46,7 @@ Bienvenue sur ma plateforme VOD développée avec **Streamlit** dans le cadre d'
 ## 📂 Structure du projet
 
 ```
-ma-plateforme-vod/
+filmrecommandation/
 ├── 📁 data/                        # Données sources
 │   ├── df_imdb_final.csv          # Fichier final utilisé dans l'app
 │   └── autres_fichiers.csv        # (ex: fichier réalisateurs populaires)
