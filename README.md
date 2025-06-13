@@ -30,10 +30,8 @@ scikit-learn	Modèle KNN de recommandation
 
 🔍 Décryptage du code Streamlit
 🧱 1. Structure principale
-python
-Copier
-Modifier
 st.set_page_config(page_title="WMDb", layout="wide")
+
 ➡️ Configure la page (titre, icône, largeur).
 
 🧭 2. Navigation via sidebar customisée
