@@ -47,20 +47,27 @@ Bienvenue sur ma plateforme VOD développée avec **Streamlit** dans le cadre d'
 
 ```
 ma-plateforme-vod/
-├── app/
-│   ├── streamlit_app.py
-│   ├── utils.py
-│   └── styles.css
-├── data/
-│   ├── df_imdb_final.csv
-│   └── dfalgotest2.csv
-├── assets/
-│   └── logo.png
-├── tests/
-│   └── test_utils.py
-├── Dockerfile
-├── requirements.txt
-└── README.md
+├── 📁 data/                        # Données sources
+│   ├── df_imdb_final.csv          # Fichier final utilisé dans l'app
+│   └── autres_fichiers.csv        # (ex: fichier réalisateurs populaires)
+│
+├── 📁 assets/                     # Images, logos, graphiques
+│   ├── evol_repa_ages.png
+│   └── autres_images.png
+│
+├── 📁 app/                        # Code principal de l'application
+│   ├── streamlit_app.py          # L'application principale (le fichier que tu m'as donné)
+│   ├── utils.py                  # Fonctions utilitaires (API, formatage, cache…)
+│   └── styles.css                # CSS personnalisé (si tu veux externaliser)
+│
+├── 📁 notebooks/                 # Jupyter notebooks pour l'exploration ou l'analyse
+│   └── analyse_initiale.ipynb
+│
+├── 📁 ressources/                # Docs externes, cahier des charges, notes
+│   └── presentation_projet.md
+│
+├── requirements.txt              # Dépendances Python
+├── README.md                     # Présentation du projet
 ```
 
 ---
