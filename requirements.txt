@@ -6,6 +6,9 @@ requests
 scikit-learn
 seaborn
 streamlit
-st-clickable-images
-st-on-hover-tabs
+
+# Composants Streamlit personnalisés
+git+https://github.com/andfanilo/st-clickable-images.git
+git+https://github.com/gvillalobos88/st-on-hover-tabs.git
+
 
